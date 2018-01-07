@@ -1,14 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { PhrasesComponent } from './phrases/phrases.component';
+import { QuizSettingsComponent } from './quiz-settings/quiz-settings.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { QuizResultsComponent } from './quiz-results/quiz-results.component';
+
+const appRoutes: Routes = [
+  { path: 'quiz-results', component: QuizResultsComponent },
+  { path: 'quiz/:unit',   component: QuizComponent },
+  { path: 'settings',     component: QuizSettingsComponent },
+  { path: '',             component: PhrasesComponent },
+  { path: '**',           component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PhrasesComponent,
+    QuizSettingsComponent,
+    QuizComponent,
+    PageNotFoundComponent,
+    QuizResultsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

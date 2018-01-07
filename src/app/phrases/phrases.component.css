@@ -1,0 +1,21 @@
+#phrasesComponent {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+#buttonPanel {
+  text-align: left;
+}
+
+#searchPanel {
+  text-align: right;
+}
+
+#searchPanel input {
+  width:500px;
+}
+
+#phrases {
+  background-color: black;
+  grid-column: 1 / 3;
+}
