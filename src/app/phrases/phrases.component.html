@@ -1,17 +1,30 @@
 
 <div id="phrasesComponent">
-
-  <div id="buttonPanel">
-    <button [routerLink]="['/settings']" routerLinkActive="active">Take Quiz</button>
+  <div id="currentUnit">
+    <h3>Unit {{selectedUnit}}</h3>
   </div>
 
-  <div id="searchPanel">
-    <label for="searchField">Search:</label>
-    <input id="searchField" type="text"/>
+  <div id="topPanel" class="flexContainer">
+    <div id="buttonPanel">
+      <button [routerLink]="['/settings']" routerLinkActive="active">Take Quiz</button>
+    </div>
+
+    <div id="searchPanel">
+      <label for="searchField">Search:</label>
+      <input id="searchField" type="text"/>
+    </div>
   </div>
 
-  <div id="phrases">
-    <h3 class="todo">Will fill this space with a pagination of phrases separated by unit</h3>
+  <div id="phrases" class="noSelect">
+    <div class="phrase" *ngFor="let phrase of currentPhrases">
+      <p class="left">{{phrase.english}}</p>
+      <p class="right">{{phrase.transliteration}}</p>
+    </div>
+  </div>
+
+  <div id="navBar" class="flexContainer">
+    <div (click)="decrementUnit()" class="navButton noSelect"><p>Previous</p></div>
+    <div (click)="incrementUnit()" class="navButton noSelect"><p>Next</p></div>
   </div>
 
 </div>
