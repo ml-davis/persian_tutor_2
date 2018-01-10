@@ -1,63 +1,44 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-interface Phrase {
-  transliteration: string;
-  english: string;
-  farsi: string;
-}
-
-interface Phrases {
-  phrases: Phrase[];
-}
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-phrases',
   templateUrl: './phrases.component.html',
-  styleUrls: ['./phrases.component.css']
+  styleUrls: ['./phrases.component.css'],
+  providers: [ DataService ]
 })
 export class PhrasesComponent implements OnInit {
 
-  phrases: Phrase[];
+  currentUnit: number;
   currentPhrases: Phrase[];
-  unitSize: number;
-  numberOfUnits: number;
-  selectedUnit: number;
 
-  constructor(private http: HttpClient) {
-    this.unitSize = 10;
-    this.selectedUnit = 1;
+  constructor(private dataService: DataService) {
+    this.currentUnit = 1;
   }
 
   ngOnInit(): void {
-    this.http.get<Phrases>('/assets/phrases.json').subscribe(data => {
-      this.phrases = data.phrases;
-      this.currentPhrases = this.getUnit(1);
-      this.numberOfUnits = Math.ceil(this.phrases.length / this.unitSize);
-    });
+    this.loadUnit(1);
   }
 
-  getUnit(unitNumber: number): Phrase[] {
-
-    const unitPhrases: Phrase[] = [];
-    const start = (unitNumber - 1) * this.unitSize;
-    const end = Math.min(start + this.unitSize, this.phrases.length);
-
-    for (let i = start; i < end; i++) {
-      unitPhrases.push(this.phrases[i]);
-    }
-    return unitPhrases;
-  }
-
-  decrementUnit() {
-    if (this.selectedUnit > 1) {
-      this.currentPhrases = this.getUnit(--this.selectedUnit);
+  decrementUnit(): void {
+    if (this.currentUnit > 1) {
+      this.loadUnit(--this.currentUnit);
     }
   }
 
-  incrementUnit() {
-    if (this.selectedUnit < this.numberOfUnits) {
-      this.currentPhrases = this.getUnit(++this.selectedUnit);
+  incrementUnit(): void {
+    if (this.currentUnit < this.dataService.getNumberOfUnits()) {
+      this.loadUnit(++this.currentUnit);
     }
+  }
+
+  private loadUnit(unitNumber: number): void {
+    this.dataService.getUnit(unitNumber)
+      .then((data) => {
+        this.currentPhrases = data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }

@@ -1,7 +1,6 @@
-
 <div id="phrasesComponent">
   <div id="currentUnit">
-    <h3>Unit {{selectedUnit}}</h3>
+    <h3>Unit {{currentUnit}}</h3>
   </div>
 
   <div id="topPanel" class="flexContainer">
@@ -15,7 +14,7 @@
     </div>
   </div>
 
-  <div id="phrases" class="noSelect">
+  <div id="phrases">
     <div class="phrase" *ngFor="let phrase of currentPhrases">
       <p class="left">{{phrase.english}}</p>
       <p class="right">{{phrase.transliteration}}</p>

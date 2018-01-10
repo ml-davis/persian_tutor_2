@@ -28,11 +28,11 @@
 }
 
 #phrases {
-  margin-top: 5%;
+  margin-top: 2%;
   padding: 0 10%;
   border: 1px solid black;
-  height: 600px;
   overflow-y: scroll;
+  height: 60vh;
 }
 
 .phrase {
