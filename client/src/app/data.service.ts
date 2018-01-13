@@ -11,8 +11,8 @@ export class DataService {
   private numberOfUnits: number;
 
   constructor(private http: HttpClient) {
-    this.url = '/assets/phrases.json';
-    this.unitSize = 5;
+    this.url = 'http://localhost:8080/phrases';
+    this.unitSize = 10;
   }
 
   getUnit(unitNumber: number): Promise<Phrase[]> {
