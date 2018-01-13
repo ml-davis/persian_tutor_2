@@ -4,31 +4,29 @@ import {DataService} from '../data.service';
 @Component({
   selector: 'app-phrases',
   templateUrl: './phrases.component.html',
-  styleUrls: ['./phrases.component.css'],
-  providers: [ DataService ]
+  styleUrls: ['./phrases.component.css']
 })
 export class PhrasesComponent implements OnInit {
 
-  currentUnit: number;
   currentPhrases: Phrase[];
 
-  constructor(private dataService: DataService) {
-    this.currentUnit = 1;
-  }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.loadUnit(1);
   }
 
   decrementUnit(): void {
-    if (this.currentUnit > 1) {
-      this.loadUnit(--this.currentUnit);
+    const currentUnit = this.dataService.getCurrentUnit();
+    if (currentUnit > 1) {
+      this.loadUnit(currentUnit - 1);
     }
   }
 
   incrementUnit(): void {
-    if (this.currentUnit < this.dataService.getNumberOfUnits()) {
-      this.loadUnit(++this.currentUnit);
+    const currentUnit = this.dataService.getCurrentUnit();
+    if (currentUnit < this.dataService.getNumberOfUnits()) {
+      this.loadUnit(currentUnit + 1);
     }
   }
 

@@ -7,20 +7,27 @@ export class DataService {
   private phrases: Phrase[];
 
   private readonly unitSize: number;
-  private url: string;
+  private readonly url: string;
+
   private numberOfUnits: number;
+  private currentUnit: number;
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/phrases';
     this.unitSize = 50;
+    this.currentUnit = 1;
   }
 
   getUnit(unitNumber: number): Promise<Phrase[]> {
-    return (this.phrases) ? this.getCachedData(unitNumber) : this.makeHttpRequest(unitNumber);
+      return (this.phrases) ? this.getCachedData(unitNumber) : this.makeHttpRequest(unitNumber);
   }
 
   getNumberOfUnits() {
     return this.numberOfUnits;
+  }
+
+  getCurrentUnit() {
+    return this.currentUnit;
   }
 
   private makeHttpRequest(unitNumber: number): Promise<Phrase[]> {
@@ -49,14 +56,15 @@ export class DataService {
       const unitPhrases = this.loadUnit(unitNumber, this.phrases);
       resolve(unitPhrases);
     });
-
   }
 
   private loadUnit(unitNumber: number, phrases: Phrase[]): Phrase[] {
+    this.currentUnit = unitNumber;
+
     const unitPhrases: Phrase[] = [];
-    const start = (unitNumber - 1) * this.unitSize;
-    const end = Math.min(start + this.unitSize, phrases.length);
-    for (let i = start; i < end; i++) {
+    const startIndex = (unitNumber - 1) * this.unitSize;
+    const endIndex = Math.min(startIndex + this.unitSize, phrases.length);
+    for (let i = startIndex; i < endIndex; i++) {
       unitPhrases.push(phrases[i]);
     }
     return unitPhrases;
