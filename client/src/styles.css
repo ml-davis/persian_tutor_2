@@ -1,10 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   background-color: #2b2b2b;
-  color: darkgrey;
+  color: #d6d6d6;
   text-align: center;
   text-shadow: 1px 1px 1px black;
-  padding: 0 20%;
+  padding: 3% 20%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button {
+  background-color: #171717;
+  color: #d6d6d6;
+  height: 3vh;
+  border-radius: 5px;
+  border: 1px solid #cbcbcb;
+}
+
+button:hover {
+  background-color: #2b2b2b;
+  color: #f6f6f6;
 }
 
 .todo {

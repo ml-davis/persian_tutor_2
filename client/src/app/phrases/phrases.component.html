@@ -5,7 +5,7 @@
 
   <div id="topPanel" class="flexContainer">
     <div id="buttonPanel">
-      <button [routerLink]="['/settings']" routerLinkActive="active">Take Quiz</button>
+      <button [routerLink]="['/settings']" routerLinkActive="active" class="quizButton">Take Quiz</button>
     </div>
 
     <div id="searchPanel">
@@ -16,14 +16,15 @@
 
   <div id="phrases">
     <div class="phrase" *ngFor="let phrase of currentPhrases">
-      <p class="left">{{phrase.english}}</p>
-      <p class="right">{{phrase.transliteration}}</p>
+      <p>{{phrase.transliteration}}</p>
+      <p>{{phrase.english}}</p>
+      <hr>
     </div>
   </div>
 
   <div id="navBar" class="flexContainer">
-    <div (click)="decrementUnit()" class="navButton noSelect"><p>Previous</p></div>
-    <div (click)="incrementUnit()" class="navButton noSelect"><p>Next</p></div>
+    <button (click)="decrementUnit()" class="navButton">Previous</button>
+    <button (click)="incrementUnit()" class="navButton">Next</button>
   </div>
 
 </div>
