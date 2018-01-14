@@ -1,19 +1,32 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
+import { SearchService } from "../search.service";
 
 @Component({
   selector: 'app-phrases',
   templateUrl: './phrases.component.html',
-  styleUrls: ['./phrases.component.css']
+  styleUrls: ['./phrases.component.css'],
+  providers: [ SearchService ]
 })
 export class PhrasesComponent implements OnInit {
 
   currentPhrases: Phrase[];
+  query: string;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.loadUnit(1);
+  }
+
+  search(event: any) {
+    const query = event.target.value.trim().toLowerCase();
+    if (query === "") {
+      this.loadUnit(this.dataService.getCurrentUnit());
+    } else if (query !== this.query) {
+      this.query = query;
+      this.currentPhrases = this.searchService.search(query);
+    }
   }
 
   decrementUnit(): void {

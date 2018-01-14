@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
 
   private phrases: Phrase[];
-
   private readonly unitSize: number;
   private readonly url: string;
 
@@ -22,16 +21,19 @@ export class DataService {
       return (this.phrases) ? this.getCachedData(unitNumber) : this.makeHttpRequest(unitNumber);
   }
 
-  getNumberOfUnits() {
+  getPhrases(): Phrase[] {
+    return this.phrases;
+  }
+
+  getNumberOfUnits(): number {
     return this.numberOfUnits;
   }
 
-  getCurrentUnit() {
+  getCurrentUnit(): number {
     return this.currentUnit;
   }
 
   private makeHttpRequest(unitNumber: number): Promise<Phrase[]> {
-    console.log('making http request');
     return new Promise((resolve, reject) => {
       this.getData()
         .then((data) => {
@@ -51,7 +53,6 @@ export class DataService {
   }
 
   private getCachedData(unitNumber: number): Promise<Phrase[]> {
-    console.log('Returning cached phrases');
     return new Promise((resolve) => {
       const unitPhrases = this.loadUnit(unitNumber, this.phrases);
       resolve(unitPhrases);
