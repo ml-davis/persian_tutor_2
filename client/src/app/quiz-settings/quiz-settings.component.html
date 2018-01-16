@@ -1,10 +1,13 @@
 <div id="quizSettingsComponent">
+
   <div id="settings">
-    <h3 class="todo">Will add settings here</h3>
+    <app-language-selections label="Revealed Type"></app-language-selections>
+    <app-language-selections label="Answer Type"></app-language-selections>
   </div>
+
   <div id="buttonPanel">
-    <button [routerLink]="['/']" routerLinkActive="active">Cancel</button>
-    <!-- TODO: use proper unit number in Apply button -->
-    <button [routerLink]="['/quiz/1']" routerLinkActive="active">Apply</button>
+    <button [routerLink]="['/']" routerLinkActive="active">Back</button>
+    <button [routerLink]="['/quiz']" routerLinkActive="active">Apply</button>
   </div>
+
 </div>

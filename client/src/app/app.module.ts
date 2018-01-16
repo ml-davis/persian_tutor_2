@@ -9,6 +9,7 @@ import { QuizSettingsComponent } from './quiz-settings/quiz-settings.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QuizResultsComponent } from './quiz-results/quiz-results.component';
+import { LanguageSelectionsComponent } from './language-selections/language-selections.component';
 
 const appRoutes: Routes = [
   { path: 'quiz-results', component: QuizResultsComponent },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     QuizSettingsComponent,
     QuizComponent,
     PageNotFoundComponent,
-    QuizResultsComponent
+    QuizResultsComponent,
+    LanguageSelectionsComponent
   ],
   imports: [
     BrowserModule,
