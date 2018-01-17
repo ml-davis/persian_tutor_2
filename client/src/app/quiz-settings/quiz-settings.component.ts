@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { LanguageSelectionsComponent } from "../language-selections/language-selections.component";
+import { InvigilatorService } from "../invigilator.service";
 
 @Component({
   selector: 'app-quiz-settings',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizSettingsComponent implements OnInit {
 
-  constructor() { }
+  @ViewChildren('type') components: QueryList<LanguageSelectionsComponent>;
 
-  ngOnInit() {
+  constructor(private invigilator: InvigilatorService) {}
+
+  ngOnInit() {}
+
+  loadQuizPhrases() {
+    this.invigilator.loadQuizPhrases();
   }
-
 }

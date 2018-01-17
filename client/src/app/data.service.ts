@@ -21,7 +21,7 @@ export class DataService {
       return (this.phrases) ? this.getCachedData(unitNumber) : this.makeHttpRequest(unitNumber);
   }
 
-  getPhrases(): Phrase[] {
+  getPhrases() {
     return this.phrases;
   }
 

@@ -1,20 +1,29 @@
 <div id="languageSelection">
 
-  <h3>{{label}}</h3>
+  <h3>{{titleCase(type)}} Type</h3>
 
   <div>
     <label for="transliteration">Transliteration</label>
-    <input id="transliteration" type="radio" name="{{label}}">
+    <input id="transliteration" type="radio" name="{{type}}"
+           (click)="setSelection(type, 'transliteration')"
+           [checked]="isCurrentType(type, 'transliteration')"
+           [disabled]="isOpposingSelected(type, 'transliteration')">
   </div>
 
   <div>
     <label for="english">English</label>
-    <input id="english" type="radio" name="{{label}}">
+    <input type="radio" id="english" name="{{type}}"
+           (click)="setSelection(type, 'english')"
+           [checked]="isCurrentType(type, 'english')"
+           [disabled]="isOpposingSelected(type, 'english')">
   </div>
 
   <div>
     <label for="farsi">Farsi</label>
-    <input id="farsi" type="radio" name="{{label}}">
+    <input type="radio" id="farsi" name="{{type}}"
+           (click)="setSelection(type, 'farsi')"
+           [checked]="isCurrentType(type, 'farsi')"
+           [disabled]="isOpposingSelected(type, 'farsi')">
   </div>
 
 </div>

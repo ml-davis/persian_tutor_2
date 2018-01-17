@@ -1,13 +1,13 @@
 <div id="quizSettingsComponent">
 
   <div id="settings">
-    <app-language-selections label="Revealed Type"></app-language-selections>
-    <app-language-selections label="Answer Type"></app-language-selections>
+    <app-language-selections type="revealed"></app-language-selections>
+    <app-language-selections type="answer"></app-language-selections>
   </div>
 
   <div id="buttonPanel">
     <button [routerLink]="['/']" routerLinkActive="active">Back</button>
-    <button [routerLink]="['/quiz']" routerLinkActive="active">Apply</button>
+    <button (click)="loadQuizPhrases()" [routerLink]="['/quiz']" routerLinkActive="active">Apply</button>
   </div>
 
 </div>
