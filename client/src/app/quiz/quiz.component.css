@@ -1,0 +1,29 @@
+#quiz {
+  height: 50vh;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+#phrase {
+  padding-top: 5%;
+  height: 25%;
+}
+
+input {
+  text-align: center;
+  width: 75%;
+}
+
+#buttonPanel {
+  padding: 2vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  flex-basis: 20%;
+}

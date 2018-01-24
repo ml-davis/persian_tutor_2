@@ -1,15 +1,25 @@
 <div id="quizComponent">
 
-  <div id="quiz">
-    <div class="phrase">
-      <p>{{revealedPhrase}}</p>
-      <p *ngIf="answerShown">{{answerPhrase}}</p>
+  <div id="quiz" class="mainPanel">
+
+    <div id="stats">
+      <p>Completed Phrases: {{counter}}/{{unitSize()}}</p>
+      <p>Unknown Phrases: z</p>
+      <p>Percent Correct -</p>
     </div>
+
+    <div id="phrase">
+      <h2>{{revealedPhrase}}</h2>
+      <h2 *ngIf="answerShown">{{answerPhrase}}</h2>
+    </div>
+
+    <input type="text"/>
+
   </div>
 
   <div id="buttonPanel">
     <button [routerLink]="['/']" routerLinkActive="active">Quit</button>
-    <button [routerLink]="['/settings']" routerLinkActive="active">Options</button>
+    <button [routerLink]="['/settings', {unit: unitNumber()}]" routerLinkActive="active">Options</button>
     <button (click)="showSolution()">Show Solution</button>
     <button (click)="next()">Next</button>
   </div>

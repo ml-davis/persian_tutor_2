@@ -18,7 +18,7 @@ export class QuizComponent implements OnInit {
   constructor(private dataService: DataService, private invigilator: InvigilatorService, private active: ActivatedRoute,
               private router: Router) {
     this.answerShown = false;
-    this.counter = 0;
+    this.counter = 1;
   }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class QuizComponent implements OnInit {
   }
 
   loadQuizPhrases(): void {
-    this.loadUnit(this.dataService.getCurrentUnit());
+    this.loadUnit(this.unitNumber());
   }
 
   showSolution(): void {
@@ -39,7 +39,7 @@ export class QuizComponent implements OnInit {
   }
 
   next(): void {
-    if (++this.counter < this.dataService.getUnitSize()) {
+    if (this.counter++ < this.unitSize()) {
       this.answerShown = false;
       this.getPhrase();
     } else {
@@ -47,12 +47,18 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  private getPhrase() {
-    const phrase = this.invigilator.getRandomPhrase();
-    if (phrase) {
-      this.revealedPhrase = phrase.transliteration;
-      this.answerPhrase = phrase.english;
-    }
+  unitSize(): number {
+    return this.dataService.getUnitSize();
+  }
+
+  unitNumber(): number {
+    return this.dataService.getCurrentUnit();
+  }
+
+  private getPhrase(): void {
+    this.invigilator.updatePhrase();
+    this.revealedPhrase = this.invigilator.getRevealedPhrase();
+    this.answerPhrase = this.invigilator.getAnswerPhrase();
   }
 
   private loadUnit(unitNumber: number): void {
