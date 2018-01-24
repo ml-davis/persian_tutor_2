@@ -12,8 +12,20 @@ export class InvigilatorService {
     this.answerType = 'english';
   }
 
-  getQuizPhrases(): Phrase[] {
-    return this.quizPhrases;
+  getRandomPhrase(): Phrase {
+
+    if (this.quizPhrases.length > 0) {
+
+      const index = Math.floor(Math.random() * this.quizPhrases.length);
+      const phrase = this.quizPhrases[index];
+      this.quizPhrases.splice(index, 1);
+
+      return phrase;
+
+    } else {
+      console.log("Error: No more quiz phrases remaining in unit");
+      return null;
+    }
   }
 
   setQuizPhrases(quizPhrases: Phrase[]): void {

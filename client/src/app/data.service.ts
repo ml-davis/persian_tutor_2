@@ -13,7 +13,7 @@ export class DataService {
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/phrases';
-    this.unitSize = 50;
+    this.unitSize = 5;
   }
 
   getUnit(unitNumber: number): Promise<Phrase[]> {
@@ -34,6 +34,10 @@ export class DataService {
 
   setCurrentUnit(unitNumber: number): void {
     this.currentUnit = unitNumber;
+  }
+
+  getUnitSize(): number {
+    return this.unitSize;
   }
 
   private makeHttpRequest(unitNumber: number): Promise<Phrase[]> {

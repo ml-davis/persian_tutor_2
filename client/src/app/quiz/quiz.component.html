@@ -1,17 +1,16 @@
 <div id="quizComponent">
 
   <div id="quiz">
-    <div class="phrase" *ngFor="let phrase of currentPhrases">
-      <p>{{phrase.transliteration}}</p>
-      <p>{{phrase.english}}</p>
-      <hr>
+    <div class="phrase">
+      <p>{{revealedPhrase}}</p>
+      <p *ngIf="answerShown">{{answerPhrase}}</p>
     </div>
   </div>
 
   <div id="buttonPanel">
     <button [routerLink]="['/']" routerLinkActive="active">Quit</button>
     <button [routerLink]="['/settings']" routerLinkActive="active">Options</button>
-    <button>Show Solution</button>
-    <button [routerLink]="['/quiz-results']" routerLinkActive="active">Next</button>
+    <button (click)="showSolution()">Show Solution</button>
+    <button (click)="next()">Next</button>
   </div>
 </div>
