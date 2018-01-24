@@ -1,7 +1,11 @@
 <div id="quizComponent">
 
   <div id="quiz">
-    <h3 class="todo">Will place quiz logic here</h3>
+    <div class="phrase" *ngFor="let phrase of currentPhrases">
+      <p>{{phrase.transliteration}}</p>
+      <p>{{phrase.english}}</p>
+      <hr>
+    </div>
   </div>
 
   <div id="buttonPanel">

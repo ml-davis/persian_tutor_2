@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DataService } from "./data.service";
 
 @Injectable()
 export class InvigilatorService {
@@ -8,42 +7,33 @@ export class InvigilatorService {
   private revealedType: string;
   private answerType: string;
 
-  constructor(private dataService: DataService) {
+  constructor() {
     this.revealedType = 'transliteration';
     this.answerType = 'english';
   }
 
-  setRevealedType(revealedType: string) {
-    this.revealedType = revealedType;
-  }
-
-  setAnswerType(answerType: string) {
-    this.answerType = answerType;
-  }
-
-  loadQuizPhrases() {
-    this.loadUnit(this.dataService.getCurrentUnit());
-  }
-
-  private loadUnit(unitNumber: number): void {
-    this.dataService.getUnit(unitNumber)
-      .then((data) => {
-        this.quizPhrases = data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  getQuizPhrases() {
+  getQuizPhrases(): Phrase[] {
     return this.quizPhrases;
   }
 
-  getRevealedType() {
+  setQuizPhrases(quizPhrases: Phrase[]): void {
+    this.quizPhrases = quizPhrases;
+  }
+
+  getRevealedType(): string {
     return this.revealedType;
   }
 
-  getAnswerType() {
+  setRevealedType(revealedType: string): void {
+    this.revealedType = revealedType;
+  }
+
+  getAnswerType(): string {
     return this.answerType;
   }
+
+  setAnswerType(answerType: string): void {
+    this.answerType = answerType;
+  }
+
 }

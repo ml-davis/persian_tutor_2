@@ -43,6 +43,10 @@ export class PhrasesComponent implements OnInit {
     }
   }
 
+  getCurrentUnit(): number {
+    return this.dataService.getCurrentUnit();
+  }
+
   private loadUnit(unitNumber: number): void {
     this.dataService.getUnit(unitNumber)
       .then((data) => {

@@ -1,6 +1,8 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { LanguageSelectionsComponent } from "../language-selections/language-selections.component";
 import { InvigilatorService } from "../invigilator.service";
+import { ActivatedRoute, Params } from "@angular/router";
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-quiz-settings',
@@ -11,11 +13,23 @@ export class QuizSettingsComponent implements OnInit {
 
   @ViewChildren('type') components: QueryList<LanguageSelectionsComponent>;
 
-  constructor(private invigilator: InvigilatorService) {}
+  constructor(private dataService: DataService, private invigilator: InvigilatorService, private router: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.params.subscribe((params: Params) => {
+      this.dataService.setCurrentUnit(params['unit'] || 1);
+    });
+  }
 
-  loadQuizPhrases() {
-    this.invigilator.loadQuizPhrases();
+  getCurrentUnit(): number {
+    return this.dataService.getCurrentUnit();
+  }
+
+  getRevealedType(): string {
+    return this.invigilator.getRevealedType();
+  }
+
+  getAnswerType(): string {
+    return this.invigilator.getAnswerType();
   }
 }

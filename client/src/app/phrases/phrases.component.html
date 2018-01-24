@@ -2,7 +2,7 @@
 
   <div id="topPanel" class="flexContainer">
     <div id="buttonPanel">
-      <button [routerLink]="['/settings']" routerLinkActive="active" class="quizButton">Take Quiz</button>
+      <button [routerLink]="['/settings', {unit: getCurrentUnit()}]" routerLinkActive="active" class="quizButton">Take Quiz</button>
     </div>
 
     <div id="searchPanel">
