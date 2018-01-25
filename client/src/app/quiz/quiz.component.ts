@@ -10,15 +10,18 @@ import { DataService } from "../data.service";
 })
 export class QuizComponent implements OnInit {
 
+  private incorrectPhrases: Phrase[] = [];
   revealedPhrase: string;
   answerPhrase: string;
   answerShown: boolean;
-  counter: number;
+  isIncorrect: boolean;
+  currentPhraseNumber: number;
 
   constructor(private dataService: DataService, private invigilator: InvigilatorService, private active: ActivatedRoute,
               private router: Router) {
     this.answerShown = false;
-    this.counter = 1;
+    this.isIncorrect = false;
+    this.currentPhraseNumber = 1;
   }
 
   ngOnInit() {
@@ -39,12 +42,22 @@ export class QuizComponent implements OnInit {
   }
 
   next(): void {
-    if (this.counter++ < this.unitSize()) {
+
+    if (this.isIncorrect) {
+      this.invigilator.insertIncorrectPhrase();
+      this.isIncorrect = false;
+    }
+
+    if (this.currentPhraseNumber++ < this.unitSize()) {
       this.answerShown = false;
-      this.getPhrase();
+      this.getNextPhrase();
     } else {
       this.router.navigate(['/quiz-results']);
     }
+  }
+
+  toggleIncorrect() {
+    this.isIncorrect = !this.isIncorrect;
   }
 
   unitSize(): number {
@@ -55,7 +68,22 @@ export class QuizComponent implements OnInit {
     return this.dataService.getCurrentUnit();
   }
 
-  private getPhrase(): void {
+  numberOfIncorrect(): number {
+    return this.invigilator.numberOfIncorrect();
+  }
+
+  percentIncorrect(): string {
+    const numberOfPhrases = this.currentPhraseNumber - 1;
+    if (numberOfPhrases === 0) {
+      return '-';
+    } else {
+      const numberCorrect = numberOfPhrases - this.numberOfIncorrect();
+      const percentage = numberCorrect / numberOfPhrases * 100;
+      return percentage.toFixed(1);
+    }
+  }
+
+  private getNextPhrase(): void {
     this.invigilator.updatePhrase();
     this.revealedPhrase = this.invigilator.getRevealedPhrase();
     this.answerPhrase = this.invigilator.getAnswerPhrase();
@@ -65,7 +93,7 @@ export class QuizComponent implements OnInit {
     this.dataService.getUnit(unitNumber)
       .then((data) => {
         this.invigilator.setQuizPhrases(data);
-        this.getPhrase();
+        this.getNextPhrase();
       })
       .catch((error) => {
         console.log(error);

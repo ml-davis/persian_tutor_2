@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InvigilatorService } from "../invigilator.service";
 
 @Component({
   selector: 'app-quiz-results',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizResultsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private invigilator: InvigilatorService) {}
 
   ngOnInit() {
+    console.log(this.invigilator.getIncorrectPhrases());
   }
 
 }
