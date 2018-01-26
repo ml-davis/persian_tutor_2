@@ -1,10 +1,17 @@
 <div id="quizResultsComponent">
+
   <div id="buttonPanel">
-    <button [routerLink]="['/']" routerLinkActive="active">Exit</button>
-    <!-- TODO: use proper unit number in Take Quiz button -->
-    <button [routerLink]="['/quiz/1']" routerLinkActive="active">Take Quiz</button>
+    <button [routerLink]="['/']" routerLinkActive="active">Home</button>
+    <button *ngIf="!isComplete" [routerLink]="['/quiz/', getData()]" routerLinkActive="active">Review</button>
   </div>
-  <div id="results">
-    <h3 class="todo">Will place results here</h3>
+
+  <div id="results" class="mainPanel">
+    <h3 *ngIf="isComplete">Congratulations! You have completed the quiz!</h3>
+    <div class="phrase" *ngFor="let phrase of currentPhrases">
+      <p>{{phrase.transliteration}}</p>
+      <p>{{phrase.english}}</p>
+      <hr>
+    </div>
   </div>
+
 </div>

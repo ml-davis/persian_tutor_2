@@ -1,0 +1,12 @@
+#buttonPanel {
+  text-align: left;
+}
+
+#buttonPanel button {
+  width: 20%;
+}
+
+#results {
+  height: 55vh;
+  overflow-y: scroll;
+}

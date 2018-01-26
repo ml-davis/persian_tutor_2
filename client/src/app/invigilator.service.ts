@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class InvigilatorService {
 
-  private quizPhrases: Phrase[];
+  private quizPhrases: Phrase[] = [];
   private incorrectPhrases: Phrase[] = [];
   private currentPhrase: Phrase;
   private revealedType: string;
@@ -64,6 +64,15 @@ export class InvigilatorService {
 
   numberOfIncorrect(): number {
     return this.incorrectPhrases.length;
+  }
+
+  numberOfPhrases(): number {
+    return this.quizPhrases.length
+  }
+
+  swapIncorrectPhrases() {
+    this.quizPhrases = this.incorrectPhrases;
+    this.incorrectPhrases = [];
   }
 
   private getPhrase(type: string): string {

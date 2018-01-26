@@ -10,12 +10,13 @@ import { DataService } from "../data.service";
 })
 export class QuizComponent implements OnInit {
 
-  private incorrectPhrases: Phrase[] = [];
   revealedPhrase: string;
   answerPhrase: string;
+  currentPhraseNumber: number;
+  unitSize: number;
   answerShown: boolean;
   isIncorrect: boolean;
-  currentPhraseNumber: number;
+  review: boolean;
 
   constructor(private dataService: DataService, private invigilator: InvigilatorService, private active: ActivatedRoute,
               private router: Router) {
@@ -29,7 +30,15 @@ export class QuizComponent implements OnInit {
       this.dataService.setCurrentUnit(params['unit'] || 1);
       this.invigilator.setRevealedType(params['revealed'] || 'transliteration');
       this.invigilator.setAnswerType(params['answer'] || 'english');
-      this.loadQuizPhrases();
+      this.review = params['review'];
+      if (this.review) {
+        this.invigilator.swapIncorrectPhrases();
+        this.unitSize = this.invigilator.numberOfPhrases();
+        this.getNextPhrase();
+      } else {
+        this.loadQuizPhrases();
+        this.unitSize = this.dataService.getUnitSize();
+      }
     });
   }
 
@@ -48,7 +57,7 @@ export class QuizComponent implements OnInit {
       this.isIncorrect = false;
     }
 
-    if (this.currentPhraseNumber++ < this.unitSize()) {
+    if (this.currentPhraseNumber++ < this.unitSize) {
       this.answerShown = false;
       this.getNextPhrase();
     } else {
@@ -58,10 +67,6 @@ export class QuizComponent implements OnInit {
 
   toggleIncorrect() {
     this.isIncorrect = !this.isIncorrect;
-  }
-
-  unitSize(): number {
-    return this.dataService.getUnitSize();
   }
 
   unitNumber(): number {

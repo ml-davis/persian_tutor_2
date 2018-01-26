@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InvigilatorService } from "../invigilator.service";
+import { DataService } from "../data.service";
 
 @Component({
   selector: 'app-quiz-results',
@@ -8,10 +9,23 @@ import { InvigilatorService } from "../invigilator.service";
 })
 export class QuizResultsComponent implements OnInit {
 
-  constructor(private invigilator: InvigilatorService) {}
+  currentPhrases: Phrase[];
+  isComplete: boolean;
+
+  constructor(private dataService: DataService, private invigilator: InvigilatorService) {}
 
   ngOnInit() {
-    console.log(this.invigilator.getIncorrectPhrases());
+    this.currentPhrases = this.invigilator.getIncorrectPhrases();
+    this.isComplete = this.currentPhrases.length == 0;
+  }
+
+  getData() {
+    return {
+      unit: this.dataService.getCurrentUnit(),
+      revealed: this.invigilator.getRevealedType(),
+      answer: this.invigilator.getAnswerType(),
+      review: true
+    };
   }
 
 }

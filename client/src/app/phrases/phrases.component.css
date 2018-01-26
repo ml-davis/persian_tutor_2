@@ -36,47 +36,10 @@
   overflow-y: scroll;
 }
 
-.mainPanel::-webkit-scrollbar {
-  width: 12px;
-}
-
-.mainPanel::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  border-radius: 10px;
-}
-
-.mainPanel::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
-}
-
-.phrase {
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0;
-}
-
-.phrase p {
-  margin: 1%;
-}
-
-hr {
-  width: 100%;
-  border: 1px solid #343434;
-}
-
 #navBar {
   margin-top: 10px;
 }
 
 .navButton {
   flex-basis: 20%;
-}
-
-.noSelect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* supported by Chrome and Opera */
 }
