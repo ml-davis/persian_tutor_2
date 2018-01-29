@@ -1,16 +1,20 @@
 #quiz {
   height: 50vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #stats {
   display: flex;
   flex-direction: column;
   text-align: right;
+  flex-basis: 35%;
 }
 
 #phrase {
   padding-top: 5%;
   height: 25%;
+  flex-basis: 40%;
 }
 
 #inputContainer {
@@ -31,4 +35,14 @@ input[type=text] {
 
 button {
   flex-basis: 20%;
+}
+
+p {
+  margin: 5px;
+}
+
+@media(max-width: 500px) {
+  h2 {
+    font-size: 1em;
+  }
 }
