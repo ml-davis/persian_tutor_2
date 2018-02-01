@@ -8,7 +8,7 @@ import { InvigilatorService } from "../invigilator.service";
 })
 export class LanguageSelectionsComponent implements OnInit {
 
-  @Input() private type: string;
+  @Input() type: string;
 
   constructor(private invigilator: InvigilatorService) {}
 
