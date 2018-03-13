@@ -3,7 +3,20 @@
   justify-content: center;
 }
 
+#buttonPanel {
+  display: flex;
+  justify-content: center;
+}
+
 button {
-  margin: 5px;
-  width: fit-content;
+  width: 12em;
+  margin: 1em 2em;
+}
+
+/* for smaller screens only */
+@media (max-width: 767px) {
+  button {
+    width: 6em;
+    margin: 1em 0.5em;
+  }
 }

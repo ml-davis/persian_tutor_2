@@ -1,29 +1,31 @@
 <div id="languageSelection">
 
-  <h3>{{titleCase(type)}} Type</h3>
+  <h2>{{titleCase(type)}} Type</h2>
 
-  <div>
-    <label for="transliteration">Transliteration</label>
-    <input id="transliteration" type="radio" name="{{type}}"
-           (click)="setSelection(type, 'transliteration')"
-           [checked]="isCurrentType(type, 'transliteration')"
-           [disabled]="isOpposingSelected(type, 'transliteration')">
-  </div>
+  <div id="checkboxes">
+    <div>
+      <label for="transliteration">Transliteration</label>
+      <input id="transliteration" type="radio" name="{{type}}"
+             (click)="setSelection(type, 'transliteration')"
+             [checked]="isCurrentType(type, 'transliteration')"
+             [disabled]="isOpposingSelected(type, 'transliteration')">
+    </div>
 
-  <div>
-    <label for="english">English</label>
-    <input type="radio" id="english" name="{{type}}"
-           (click)="setSelection(type, 'english')"
-           [checked]="isCurrentType(type, 'english')"
-           [disabled]="isOpposingSelected(type, 'english')">
-  </div>
+    <div>
+      <label for="english">English</label>
+      <input type="radio" id="english" name="{{type}}"
+             (click)="setSelection(type, 'english')"
+             [checked]="isCurrentType(type, 'english')"
+             [disabled]="isOpposingSelected(type, 'english')">
+    </div>
 
-  <div>
-    <label for="farsi">Farsi</label>
-    <input type="radio" id="farsi" name="{{type}}"
-           (click)="setSelection(type, 'farsi')"
-           [checked]="isCurrentType(type, 'farsi')"
-           [disabled]="isOpposingSelected(type, 'farsi')">
+    <div>
+      <label for="farsi">Farsi</label>
+      <input type="radio" id="farsi" name="{{type}}"
+             (click)="setSelection(type, 'farsi')"
+             [checked]="isCurrentType(type, 'farsi')"
+             [disabled]="isOpposingSelected(type, 'farsi')">
+    </div>
   </div>
 
 </div>
