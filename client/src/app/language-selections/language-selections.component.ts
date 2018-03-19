@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InvigilatorService } from "../invigilator.service";
+import { InvigilatorService } from '../invigilator.service';
 
 @Component({
   selector: 'app-language-selections',
@@ -7,6 +7,12 @@ import { InvigilatorService } from "../invigilator.service";
   styleUrls: ['./language-selections.component.css']
 })
 export class LanguageSelectionsComponent implements OnInit {
+
+  private types: string[] = [
+    'transliteration',
+    'english',
+    'farsi'
+  ];
 
   @Input() type: string;
 
@@ -39,7 +45,7 @@ export class LanguageSelectionsComponent implements OnInit {
     } else if (type === 'answer') {
       return this.invigilator.getRevealedType() === selection;
     } else {
-      console.log("Error: unknown type selected when disabling opposing button");
+      console.log('Error: unknown type selected when disabling opposing button');
     }
   }
 
@@ -49,19 +55,13 @@ export class LanguageSelectionsComponent implements OnInit {
     } else if (type === 'answer') {
       return this.invigilator.getAnswerType() === selection;
     } else {
-      console.log("Error: unknown type selected when disabling opposing button");
+      console.log('Error: unknown type selected when disabling opposing button');
     }
   }
 
   titleCase(str): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
-
-  private types: string[] = [
-    'transliteration',
-    'english',
-    'farsi'
-  ];
 
   private getIndex(selection: string): number {
     for (let i = 0; i < this.types.length; i++) {
@@ -76,7 +76,6 @@ export class LanguageSelectionsComponent implements OnInit {
     if (revealed_index === hidden_index) {
       hidden_index = (hidden_index + 1) % 3;
     }
-
     return hidden_index;
   }
 }

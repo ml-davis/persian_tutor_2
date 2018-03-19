@@ -1,8 +1,8 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { LanguageSelectionsComponent } from "../language-selections/language-selections.component";
-import { InvigilatorService } from "../invigilator.service";
-import { ActivatedRoute, Params } from "@angular/router";
-import { DataService } from "../data.service";
+import { LanguageSelectionsComponent } from '../language-selections/language-selections.component';
+import { InvigilatorService } from '../invigilator.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-quiz-settings',
@@ -13,7 +13,9 @@ export class QuizSettingsComponent implements OnInit {
 
   @ViewChildren('type') components: QueryList<LanguageSelectionsComponent>;
 
-  constructor(private dataService: DataService, private invigilator: InvigilatorService, private router: ActivatedRoute) {}
+  constructor(private dataService: DataService,
+              private invigilator: InvigilatorService,
+              private router: ActivatedRoute) {}
 
   ngOnInit() {
     this.router.params.subscribe((params: Params) => {

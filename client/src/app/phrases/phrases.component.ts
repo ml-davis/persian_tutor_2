@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {DataService} from '../data.service';
-import { SearchService } from "../search.service";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-phrases',
   templateUrl: './phrases.component.html',
   styleUrls: ['./phrases.component.css'],
-  providers: [ SearchService ]
+  providers: [SearchService]
 })
 export class PhrasesComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class PhrasesComponent implements OnInit {
 
   search(event: any) {
     const query = event.target.value.trim().toLowerCase();
-    if (query === "") {
+    if (query === '') {
       this.loadUnit(this.dataService.getCurrentUnit());
     } else if (query !== this.query) {
       this.query = query;

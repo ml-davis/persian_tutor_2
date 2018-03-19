@@ -12,11 +12,11 @@ import { QuizResultsComponent } from './quiz-results/quiz-results.component';
 import { LanguageSelectionsComponent } from './language-selections/language-selections.component';
 
 const appRoutes: Routes = [
-  { path: 'quiz-results',                         component: QuizResultsComponent },
-  { path: 'quiz',                                 component: QuizComponent },
-  { path: 'settings',                             component: QuizSettingsComponent },
-  { path: '',                                     component: PhrasesComponent },
-  { path: '**',                                   component: PageNotFoundComponent }
+  { path: 'quiz-results', component: QuizResultsComponent },
+  { path: 'quiz',         component: QuizComponent },
+  { path: 'settings',     component: QuizSettingsComponent },
+  { path: '',             component: PhrasesComponent },
+  { path: '**',           component: PageNotFoundComponent }
 ];
 
 @NgModule({

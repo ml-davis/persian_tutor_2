@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InvigilatorService } from "../invigilator.service";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { DataService } from "../data.service";
+import { InvigilatorService } from '../invigilator.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-quiz',

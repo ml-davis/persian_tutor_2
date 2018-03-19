@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InvigilatorService } from "../invigilator.service";
-import { DataService } from "../data.service";
+import { InvigilatorService } from '../invigilator.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-quiz-results',
@@ -16,7 +16,7 @@ export class QuizResultsComponent implements OnInit {
 
   ngOnInit() {
     this.currentPhrases = this.invigilator.getIncorrectPhrases();
-    this.isComplete = this.currentPhrases.length == 0;
+    this.isComplete = this.currentPhrases.length === 0;
   }
 
   getData() {
@@ -27,5 +27,4 @@ export class QuizResultsComponent implements OnInit {
       review: true
     };
   }
-
 }

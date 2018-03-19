@@ -17,7 +17,7 @@ export class DataService {
   }
 
   getUnit(unitNumber: number): Promise<Phrase[]> {
-      return (this.phrases) ? this.getCachedData(unitNumber) : this.makeHttpRequest(unitNumber);
+    return (this.phrases) ? this.getCachedData(unitNumber) : this.makeHttpRequest(unitNumber);
   }
 
   getPhrases() {
